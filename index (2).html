@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>College Complaint Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="login" class="login">
+  <form class="card lg" id="loginForm">
+    <h1>College Complaint Management</h1>
+    <p class="mu">Sign in to submit or manage complaints.</p>
+    <label>Role<select id="role"><option value="student">Student</option><option value="admin">Admin</option></select></label>
+    <label>Name or ID<input id="uid" required autocomplete="off"></label>
+    <label>Password<input id="pw" type="password" required></label>
+    <div class="err" id="lerr"></div>
+    <button class="btn" type="submit">Sign in</button>
+    <p class="mu hint">Demo: student → any name, password <b>student123</b>. Admin → <b>admin</b>, password <b>admin123</b>.</p>
+  </form>
+</section>
+
+<div id="app" class="hide">
+  <header class="top">
+    <strong>Complaint Desk</strong>
+    <nav id="nav"></nav>
+    <span class="who" id="who"></span>
+    <button class="btn ghost sm" id="logout">Sign out</button>
+  </header>
+  <main>
+    <section id="v-dash" class="hide"></section>
+    <section id="v-new" class="hide">
+      <h2>New complaint</h2><p class="mu">Describe the problem so the right team can act on it.</p>
+      <form class="card form" id="cForm" novalidate>
+        <label>Title<input name="title" maxlength="80"><span class="err" data-e="title"></span></label>
+        <label>Category<select name="cat"><option value="">Select category</option><option>Hostel</option><option>Library</option><option>Classroom &amp; Infrastructure</option><option>Canteen</option><option>Transport</option><option>Academic</option><option>Other</option></select><span class="err" data-e="cat"></span></label>
+        <label>Priority<select name="pri"><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+        <label class="full">Details<textarea name="desc" rows="5" maxlength="600"></textarea><span class="err" data-e="desc"></span></label>
+        <div class="full"><button class="btn" type="submit">Submit complaint</button></div>
+      </form>
+    </section>
+    <section id="v-list" class="hide">
+      <h2 id="lt">Complaints</h2><p class="mu" id="ls"></p>
+      <div class="tools">
+        <input id="q" type="search" placeholder="Search by title or ID" aria-label="Search">
+        <select id="fs" aria-label="Status"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select>
+        <select id="fc" aria-label="Category"><option value="">All categories</option></select>
+      </div>
+      <div id="rows" class="rows"></div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg"></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
